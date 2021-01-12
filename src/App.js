@@ -5,6 +5,8 @@ import styled from "@emotion/styled";
 
 import awsExports from "./aws-exports";
 import Screens from "./components/Screens";
+const test_env = process.env.TEST_ENV;
+console.log(test_env);
 
 const Title = styled("h1")`
   text-align: center;
@@ -66,19 +68,19 @@ function App() {
   return state.isLoggedIn ? (
     <Screens />
   ) : (
-    <>
-      <Title>Quick Notes</Title>
-      <Authenticator
-        onStateChange={authState => {
-          if (authState === "signedIn") {
-            checkLoggedIn();
-          }
-        }}
-        amplifyConfig={awsExports}
-        theme={theme}
-      />
-    </>
-  );
+      <>
+        <Title>Quick Notes</Title>
+        <Authenticator
+          onStateChange={authState => {
+            if (authState === "signedIn") {
+              checkLoggedIn();
+            }
+          }}
+          amplifyConfig={awsExports}
+          theme={theme}
+        />
+      </>
+    );
 }
 
 export default App;
